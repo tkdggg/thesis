@@ -9,7 +9,7 @@ def flac_to_wav(filepath, savedir):
     #save_dir: C:\Users\tkdg\Desktop\深度学习项目\id00800-enroll.wav
     os.system(cmd)
 
-def create_cn_celeb(data_dir):
+def Preparation(data_dir):
     dirs = sorted(os.listdir(data_dir))
     for label, d in enumerate(dirs):
         lis=os.listdir(os.path.join(data_dir, d))
@@ -24,10 +24,9 @@ def create_cn_celeb(data_dir):
                 os.remove(sound_path)
 
 if __name__ == '__main__':
-    create_cn_celeb(data_dir='D:/dataset/CN-Celeb_flac/data/')
+    Preparation(data_dir='D:/dataset/CN-Celeb_flac/data/')
     # C:\Users\tkdg\Desktop\test
     # create_cn_celeb(data_dir='C:/Users/tkdg/Desktop/test/')
-    # create_cn_celeb2(list_path='D/dataset/train_list.txt', data_path='D:/dataset')  #暂时不要
 
 
 
