@@ -18,20 +18,14 @@ def get_mel_librosa(sound_path,feature_sound_path):
     np.save(feature_sound_path, specgram)
     print(np.shape(specgram))
 
-    mel_spect = librosa.power_to_db(specgram, ref=np.max)
-    librosa.display.specshow(mel_spect, y_axis='mel', fmax=sr / 2, x_axis='time')
-    plt.title('Mel Spectrogram')
-    plt.colorbar(format='%+2.0f dB')
-    plt.show()
-
 def create_Feature(data_dir,detail_dir,features_file_path):
     os.chdir(detail_dir)
     os.makedirs(features_file_path)# 建立新文件夹，存放特征文件
 
     dirs = sorted(os.listdir(data_dir))
     for label, d in enumerate(dirs):
-        lis=os.listdir(os.path.join(data_dir, d))
-        os.chdir(os.path.join(detail_dir,features_file_path))
+        lis=os.listdir(os.path.join(data_dir, d).replace('\\', '/'))
+        os.chdir(os.path.join(detail_dir,features_file_path).replace('\\', '/'))
         os.makedirs(d)
         for file in lis:
             if file.split('.')[-1]=='wav':
@@ -48,9 +42,9 @@ def create_Feature(data_dir,detail_dir,features_file_path):
 
 
 if __name__ == '__main__':
-    features_file_path = 'CN-test-feature' #相对路径前面不用‘/’
-    detail_dir = 'D:/dataset'  # 目标文件夹上一级文件夹
-    data_dir='D:/dataset/CN_test'
+    features_file_path = 'data-feature' #相对路径前面不用‘/’
+    detail_dir = 'D:\dataset\CN-Celeb_flac'  # 目标文件夹上一级文件夹
+    data_dir='D:\dataset\CN-Celeb_flac\data'
     create_Feature(data_dir,detail_dir,features_file_path)
     # C:\Users\tkdg\Desktop\test
     # create_cn_celeb(data_dir='C:/Users/tkdg/Desktop/test/')

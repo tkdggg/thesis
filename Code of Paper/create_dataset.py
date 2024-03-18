@@ -3,9 +3,9 @@ import os
 
 # 制作CN-Celeb数据集列表
 # 下载地址：https://openslr.magicdatatech.com/resources/82/cn-celeb_v2.tar.gz
-def create_cn_celeb(list_path, data_path='D:/dataset/'):  #D:\dataset  新路径
+def create_cn_celeb(list_path, data_path):
     f_train = open(list_path, 'w', encoding='utf-8')
-    data_dir = os.path.join(data_path, 'CN-Celeb_flac/data/')  #os.path.join路径拼接
+    data_dir = os.path.join(data_path, 'CN-Celeb_flac\data-feature').replace('\\','/')  #os.path.join路径拼接
     dirs = sorted(os.listdir(data_dir))   #os.listdir() 方法用于返回指定的文件夹包含的文件或文件夹的名字的列表。
     for label, d in enumerate(dirs):#enumerate() 函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标
         # 跳过测试集               这里的label作为下标，也作为说话人（数据集中，data下每个文件夹就是一个说话人），这里的label就是说话人标注
